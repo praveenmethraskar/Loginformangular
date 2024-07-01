@@ -6,17 +6,31 @@
                   <h2 class=" text-center">Welcome Back  <span class="span-space">👋</span></h2>
                   <p class="p-text">Today is a new day. It's your day. You shape it. <br>
                     Sign in to start managing your projects.</p>
-                  <form>
+                  <form [formGroup]="Form" >
                     <div class="form-group mb-3">
                       <label for="email">Email</label>
-                      <input type="email" class="form-control" id="email" placeholder="Example@gmail.com">
+                      <input type="email"  formControlName="email"  class="form-control" id="email" placeholder="Example@gmail.com" required>
+                      <div class="input-group">
+                        @if (Form.controls['email'].touched &&Form.controls['email'].errors?.['required']){
+                          <span style="color: red;padding: 5px;margin: 10px;"> This field is required.</span>
+                        }
+                        @else if(Form.controls['email'].touched &&Form.controls['email'].errors?.['email']){
+                          <span style="color: red;padding: 5px;"> Enter valid email id.</span>
+                        }
+                      </div>
+                      
                     </div>
-                    <div class="form-group mb-4">
+                    <div class="form-group mb-4" style="padding-top: 15px;">
                       <label for="password">Password</label>
-                      <input type="password" class="form-control" id="password" placeholder="Atleast 8 Characters">
+                      <input type="password" class="form-control" formControlName="password" id="password" placeholder="Atleast 8 Characters" required>
+                      <div class="input-group">
+                        @if (Form.controls['password'].touched &&Form.controls['password'].errors?.['required']){
+                          <span style="color: red; padding: 15px;"> This field is required</span>
+                        }
+                      </div>
                     </div>
                     <div class="forgot"><a href="#" style="text-decoration: none;">Forgot Password</a></div>
-                    <button type="submit" class="btn btn-primary w-100 background">Login</button>
+                    <button type="submit" class="btn btn-primary w-100 background" [disabled]="Form.invalid" (click)="onSave()">Login</button>
                     
                   </form>
         

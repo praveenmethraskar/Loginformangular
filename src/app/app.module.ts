@@ -5,21 +5,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 
+
 @NgModule({
+
   imports: [
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+ 
     // Add more Angular Material modules as needed
   ],
   exports: [
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule, 
     // Export these modules to use in other components
   ]
 })
 export class MaterialModule { }
+export class AppModule { }
 
